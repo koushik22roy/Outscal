@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class SpawnTank : MonoBehaviour
 {
+    [System.Serializable]
+    public class Tank
+    {
+        public float movementSpeed;
+        public float rotationSpeed;
+        public TankTypes tankTypes;
+        public Material color;
+    }
+
+    public List<Tank> tankList;
+
     [SerializeField] TankView tankView;
     // Start is called before the first frame update
     void Start()
@@ -13,7 +24,7 @@ public class SpawnTank : MonoBehaviour
 
     private void CreateTank()
     {
-        TankModel tankModel = new TankModel(20,20);
+        TankModel tankModel = new TankModel(tankList[0].movementSpeed,tankList[0].rotationSpeed,tankList[0].tankTypes,tankList[0].color);
         TankController tankController = new TankController(tankModel,tankView);
     }
 }
